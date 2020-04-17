@@ -1,0 +1,33 @@
+<template>
+    <div class="footer">
+        <strong>easy-css</strong> by <span>Kono</span>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            
+        }
+    },
+}
+</script>
+
+<style scoped lang="scss">
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+    background-color: beige;
+    line-height: 50px;
+
+    span{
+        font-weight: bold;
+    }
+}
+</style>
