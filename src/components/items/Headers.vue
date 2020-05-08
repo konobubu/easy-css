@@ -2,6 +2,7 @@
     <div class="headers">
         <Content
             v-bind:name="name"
+            v-bind:sizeObj="sizeObj"
             v-bind:codelist="codelist"
         />
     </div>

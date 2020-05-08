@@ -1,4 +1,4 @@
 module.exports = {
-    publicPath: '/',
+    publicPath: '/easy-css-app/',
     outputDir: 'docs'
 }
