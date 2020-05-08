@@ -39,33 +39,16 @@ export default {
             id: 5,
             name: "List",
             link: '/list'
-        }
+        },
       ]
     }
   },
-  props: {
-    msg: String
-  },
-  // data() {
-  //   return {
-
-  //   }
-  // },
-  methods: {
-    a: function(){
-      this.itemList.forEach(element => {
-      console.log(element.id);
-      });
-    }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-ul{
-    style: none;
-}
+
 
 .nav-wrapper{
   border-bottom: 1px solid black;

@@ -1,13 +1,21 @@
 <template>
-    <div class="html-wrapper">
-        <div v-if="bool">
+    <div class="html-view-wrapper">
+        <div class="html-tab-wrapper">
+            <div class="html-tab">HTML</div>
+            <button v-if="htmlCopy" type="button" class="copy-html" v-on:click="copyHtml()">コピーする</button>
+        </div>
+        <textarea id="copy-html" v-bind:value="htmlCopy" readonly></textarea> 
+
+        <div v-if="bool" class="html-view">
             <span v-for="(code, index) in htmlCode" v-bind:key="index">
             {{code}}<br>
             </span>
         </div>
-        <div v-else>
+        <div v-else class="html-view">
             {{htmlCode}}
         </div>
+    
+
     </div>
 
 </template>
@@ -15,32 +23,81 @@
 <script>
 export default {
     props: {
-        htmlCode: [String, Array],
+        htmlCode: [String, Array], //表示用のhtml
         bool: Boolean,
-    }
+        htmlCopy: [String, Array] //コピー用のhtml
+    },
+    methods:{
+        copyHtml(){
+            this.copyTarget = document.getElementById("copy-html");
+            // コピー対象のテキストを選択する
+            this.copyTarget.select();
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
+
+        }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 
 
-    .html-wrapper{
+    .html-view-wrapper{
+        display: flex;
+        flex-direction: column;
         width: 50%;
-        border-right: 1px black solid;
-        overflow-y: scroll;
+        height: 400px;
+        position: relative;
 
-    
+        .html-tab-wrapper{
+            display: flex;
+            justify-content: space-around;
+            height: 40px;
 
-        &::-webkit-scrollbar
-        {
-            width:5px;
-            background:#eee;
-            margin: 4px;
+            .html-tab{
+                margin-left: 20px;
+                height: 41px;
+                // line-height: 40px;
+                padding: 8px 12px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                border: 1px solid black;
+                border-radius: 10px 10px 0 0;
+                font-size: 20px;
+                text-align: center;
+                font-weight: bold;
+                width: 82px;
+            }
         }
-        &::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0,0,0,.5);
-            box-shadow: 0 0 1px rgba(255,255,255,.5);
+
+        .html-view{
+            height: 360px;
+            box-sizing: border-box;
+            border-right: 1px black solid;
+            padding: 10px 0 0 16px;
+            border-top: 1px black solid;
+            position: relative;
+            overflow-y: scroll;
+
+                &::-webkit-scrollbar
+                {
+                    width:5px;
+                    background:#eee;
+                    margin: 4px;
+                }
+                
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 4px;
+                    background-color: rgba(0,0,0,.5);
+                    box-shadow: 0 0 1px rgba(255,255,255,.5);
+                }
         }
+
+        #copy-html{
+            position: absolute;
+            left: -9999px;
+        }
+
     }
 </style>

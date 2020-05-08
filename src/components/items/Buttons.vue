@@ -2,6 +2,7 @@
     <div class="button">
         <Content
             v-bind:name="name"
+            v-bind:sizeObj="sizeObj"
             v-bind:codelist="codelist"
         />
     </div>
@@ -14,25 +15,43 @@ export default {
     data() {
         return {
             name: "Button",
+            sizeObj: {
+                height: '120px',
+                width: '30%',
+            },
             codelist: [
                 {
                     id: 0,
-                    html: `<a href="#!" class="button-1">BUTTON</a>`,
+                    html: [
+'<a href="#" class="button-1">BUTTON</a>',
+                    ],
+
                     style: [
-                        `
-                        color: #f00,
-                        font-weight: bold,
-                        `
+`
+.button-1 {,
+display: inline-block;,
+padding: 4px 12px;,
+text-decoration: none;,
+color: #FFF;,
+background-color: #105E86;,
+opacity: 0.75;,
+}
+`
                     ],
                 },
+
                 {
                     id: 1,
-                    html: "aaaaa",
-                    style: {
-                        color: 'black',
-                        fontWeight: 'bold',
-                    }, 
-                }
+                    html: [
+'aaaaa',
+                    ],
+                    style: [
+`color: 'black',
+fontWeight: 'bold'
+`
+                    ], 
+                },
+
             ]
         }
     },
@@ -41,3 +60,14 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.button-1{
+    display: inline-block;
+    padding: 4px 12px;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #105E86;
+    opacity: 0.75;
+}
+</style>

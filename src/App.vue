@@ -26,11 +26,20 @@ export default {
 </script>
 
 <style lang="scss">
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
 #app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+
 }
 
 #nav {

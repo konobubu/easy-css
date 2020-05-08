@@ -1,5 +1,5 @@
 <template>
-    <div class="button">
+    <div class="headers">
         <Content
             v-bind:name="name"
             v-bind:codelist="codelist"

@@ -1,7 +1,8 @@
 <template>
-    <div class="button">
+    <div class="lists">
         <Content
             v-bind:name="name"
+            v-bind:sizeObj="sizeObj"
             v-bind:codelist="codelist"
         />
     </div>
@@ -14,6 +15,10 @@ export default {
     data() {
         return {
             name: "List",
+            sizeObj: {
+                height: '300px',
+                width: '30%',
+            },
             codelist: [
                 {
                     id: 0,
@@ -25,30 +30,23 @@ export default {
                             '<li>List4</li>',
                            '</ul>'
                     ],
-                    a: `
-                        1,
-                        2,
-                        3aaaaa
-                    `
-                    ,
                     style: [ //配列にする理由：lengthで要素数をとりたいから
                         //カンマ区切りで配列に入れる
+`ul.list1 {,
+max-width: 15em;,
+padding: 12px 30px 10px 50px;,
+margin: 0 auto;,
+color: #333;,
+background: #fff;,
+border: solid 3px gray;,
+border-radius: 0.5em;,
+}`
+,
 
-                        `ul.list1 {,
-                        max-width: 15em;,
-                        padding: 0.5em 0.5em 0.5em 2em;,
-                        margin: 0 auto;,
-                        color: #333;,
-                        background: #fff;,
-                        border: solid 3px gray;,
-                        border-radius: 0.5em;,
-                        }`
-                        ,
-
-                        `ul.list1 li {,
-                            padding: 0.5em 0;,
-                            line-height: 1.5;,
-                        }`
+`ul.list1 li {,
+    padding: 0.5em 0;,
+    line-height: 1.5;,
+}`
                     ]
                 },
 
@@ -79,11 +77,36 @@ export default {
                             '</div>',
                     ],
                     style:[
-                     `
-                        color: 'black',
-                        fontWeight: 'bold',
-                    `
+`
+color: 'black',
+fontWeight: 'bold'
+`
                     ]
+                },
+                {
+                    id: 2,
+                    html: [
+                           '<div class="list3">',
+                                '<ul>',
+                                    '<li class="index-list index-list-select">',
+                                        '<div class="index-name index-name-select">',
+                                            'list1',
+                                        '</div>',
+                                    '</li>',
+                                    '<li>',
+                                        '<div class="dddd">',
+                                            'ddddd',
+                                        '</div>',
+                                    '</li>',
+                                '</ul>',
+                            '</div>',
+                    ],
+                    style:[
+                     `
+                        color: 'red',
+                        fontWeight: 'hosoi'
+                    `
+                    ]                    
                 }
             ]
         }
@@ -123,19 +146,17 @@ export default {
 
 <style lang="scss">
 ul.list1 {
-  max-width: 15em;
-  padding: 0.5em 0.5em 0.5em 2em;
-  margin: 0 auto;
-  color: #333;
-  background: #fff;
-  border: solid 3px gray;
-  border-radius: 0.5em;
+    max-width: 15em;
+    padding: 12px 30px 10px 50px;
+    margin: 0 auto;
+    color: #333;
+    background: #fff;
+    border: solid 3px gray;
+    border-radius: 0.5em;
 
     li {
         padding: 0.5em 0;
         line-height: 1.5;
     }
 }
-
-
 </style>

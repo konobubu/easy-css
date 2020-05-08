@@ -17,10 +17,9 @@ export default {
 <style scoped lang="scss">
 
 .footer{
-    position: absolute;
-    bottom: 0;
     text-align: center;
     margin: 0 auto;
+    margin-top: auto;
     width: 100%;
     height: 50px;
     background-color: beige;

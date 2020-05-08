@@ -1,71 +1,125 @@
 <template>
-    <div class="css-wrapper">
-        <div>
-            
-            {{cssArray}}
+    <div class="css-view-wrapper">
+        <div class="css-tab-wrapper">
+            <div class="css-tab">CSS</div>
+            <button v-if="cssCopy" type="button" class="copy-css" v-on:click="copyCss()">コピーする</button>
         </div>
-    </div>
+        <textarea id="copy-css" v-bind:value="cssCopy" readonly></textarea>  
+        <div class="css-view">
+            <div v-for="(codes, index) in cssArray" v-bind:key="index">
+                <span v-for="(code,index) in codes" v-bind:key="index" class="to-css-copy">
+                    {{code}}<br>
+                </span><br>
+            </div>
+        </div>
 
+
+    </div>
 </template>
 
 <script>
 export default {
     props: {
         cssCode: [String, Array,],
-        index: [String, Number, ],
-        cssArray: [Array, ]
+        cssArray: [Array, String],
+        cssCopy: [Array, String],
     },
     data() {
         return {
             codestr: '',
+            copyTarget: '',
         }
     },
     computed: {
-        // a(){
-        //     // this.cssLen[this.index] = 
 
-        //     // for(var i=0; i<this.cssLen[this.index]; i++){
-        //     //     this.cssArray[i] = this.cssCode[i].split(',');
-        //     //     this.codestr = this.cssArray[i].join("\n");
-        //     // }
+    },
+    methods:{
+        copyCss(){
+            this.copyTarget = document.getElementById("copy-css");
+            // コピー対象のテキストを選択する
+            this.copyTarget.select();
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
 
-        //     // return 
-        // }
+        }
     },
     created() {
-        // console.log(this.cssArray);
+        // this.parent = document.getElementById("css-wrapper");
         // this.cssLen[this.index] = this.cssCode.length;
         // console.log(this.cssLen)
-        // console.log(this.cssCode);
+        
         // this.cssLen[index] = this.cssCode.length; //上書きされるからOK
         // console.log(this.cssLen[index]);
         
 
-                // for(var i=0; i<this.cssLen[index]; i++){
-                //     this.array[i] = this.cssCode[i];
-                //     console.log(this.array);
-                // }
+        // for(var i=0; i<this.cssLen[index]; i++){
+        //     this.array[i] = this.cssCode[i];
+        //     console.log(this.array);
+        // }
     },
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
 
-    .css-wrapper{
+    .css-view-wrapper{
+        display: flex;
+        flex-direction: column;
         width: 50%;
-        overflow-y: scroll;
+        height: 400px;
+        position: relative;
+        
+        .css-tab-wrapper{
+            display: flex;
+            justify-content: space-around;
+            height: 40px;
 
-        &::-webkit-scrollbar
-        {
-            width:5px;
-            background:#eee;
-            margin: 4px;
+            .css-tab{
+                margin-left: 20px;
+                height: 41px;
+                padding: 8px 12px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                border: 1px solid black;
+                border-radius: 10px 10px 0 0;
+                font-size: 20px;
+                text-align: center;
+                font-weight: bold;
+                width: 82px;
+            }
         }
-        &::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0,0,0,.5);
-            box-shadow: 0 0 1px rgba(255,255,255,.5);
+
+        .css-view{
+            height: 360px;
+            box-sizing: border-box;
+            border-right: 1px black solid;
+            padding: 10px 0 0 16px;
+            border-top: 1px black solid;
+            position: relative;
+            overflow-y: scroll;
+
+                &::-webkit-scrollbar
+                {
+                    width:5px;
+                    background:#eee;
+                    margin: 4px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 4px;
+                    background-color: rgba(0,0,0,.5);
+                    box-shadow: 0 0 1px rgba(255,255,255,.5);
+                }
         }
+
+
     }
+
+    #copy-css{
+        position: absolute;
+        left: -9999px;
+    }
+
+
 </style>
