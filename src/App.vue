@@ -44,9 +44,10 @@ export default {
 
 #nav {
   // padding: 30px;
-  height: 50px;
+  height: 55px;
   line-height: 25px;
   padding-top: 6px;
+  border-bottom: 1px solid black;
 
   a {
     font-weight: bold;

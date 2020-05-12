@@ -107,6 +107,7 @@ $result-height: calc($content-height - 50px);
 
 .content-wrapper{
     // height: $content-height;
+    background-color: #f5f5dc;
 
     .content{
         // border-bottom: 1px black solid;

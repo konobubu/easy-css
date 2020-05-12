@@ -97,8 +97,9 @@ export default {
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
     padding: 60px 36px 0 36px;
     margin: 20px;
+    background-color: #fff;
     position: relative;
-    
+
     .result-html{
         padding: 8px 0;
         width: 100%;

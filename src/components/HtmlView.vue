@@ -68,6 +68,7 @@ export default {
                 text-align: center;
                 font-weight: bold;
                 width: 82px;
+                background-color: #fff;
             }
         }
 
@@ -79,6 +80,7 @@ export default {
             border-top: 1px black solid;
             position: relative;
             overflow-y: scroll;
+            background-color: #fff;
 
                 &::-webkit-scrollbar
                 {

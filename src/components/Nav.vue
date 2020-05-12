@@ -51,7 +51,7 @@ export default {
 
 
 .nav-wrapper{
-  border-bottom: 1px solid black;
+
 
   .nav {
     list-style-type: none;
