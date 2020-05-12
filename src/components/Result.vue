@@ -98,8 +98,9 @@ export default {
     padding: 60px 36px 0 36px;
     margin: 20px;
     position: relative;
-
+    
     .result-html{
+        padding: 8px 0;
         width: 100%;
         margin: 0 auto;
         text-align: center;

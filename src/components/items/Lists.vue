@@ -17,7 +17,7 @@ export default {
             name: "List",
             sizeObj: {
                 height: '300px',
-                width: '30%',
+                width: '40%',
             },
             codelist: [
                 {
@@ -49,15 +49,6 @@ border-radius: 0.5em;,
 }`
                     ]
                 },
-
-                // style: [
-                //     {
-                //         css1: []
-                //     },
-                //     {
-                //         css2: []
-                //     }
-                // ],
                 {
                     id: 1,
                     html: [

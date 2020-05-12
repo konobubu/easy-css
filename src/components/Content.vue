@@ -128,8 +128,9 @@ $result-height: calc($content-height - 50px);
         .result-wrapper{
             //ここのheightはjsを使ってなんとかする
             width: 80%;
-            height: 100vh;
+            height: auto;
             margin: 0 auto;
+            margin-bottom: 72px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
