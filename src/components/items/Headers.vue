@@ -79,6 +79,7 @@ export default {
     padding:0;
     border:0;
     outline:0;
+    margin-top: 30px;
 }
 
 .header-1-li{

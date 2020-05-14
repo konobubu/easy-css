@@ -17,7 +17,7 @@ export default {
             name: "Cards",
             sizeObj: {
                 height: '340px',
-                width: '100%',
+                width: '80%',
             },
             codelist: [
                 {

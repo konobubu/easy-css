@@ -2,7 +2,7 @@
     <div class="html-view-wrapper">
         <div class="html-tab-wrapper">
             <div class="html-tab">HTML</div>
-            <button v-if="htmlCopy" type="button" class="copy-html" v-on:click="copyHtml()">コピーする</button>
+            <button v-if="htmlCopy" type="button" class="copy-html-btn" v-on:click="copyHtml()">HTMLをコピー</button>
         </div>
         <textarea id="copy-html" v-bind:value="htmlCopy" readonly></textarea> 
 
@@ -62,13 +62,46 @@ export default {
                 padding: 8px 12px;
                 -webkit-box-sizing: border-box;
                 box-sizing: border-box;
-                border: 1px solid black;
+                border: 1px solid #42b983;
                 border-radius: 10px 10px 0 0;
                 font-size: 20px;
                 text-align: center;
                 font-weight: bold;
                 width: 82px;
-                background-color: #fff;
+                background-color: #42b983;
+                color: #fff;
+            }
+
+            .copy-html-btn{
+                padding: 2px 12px;
+                border: 2px solid #42b983;
+                border-radius: 10px;
+                color: #42b983;
+                font-weight: bold;
+                overflow: hidden;
+                position: relative;
+                z-index: 1;
+                transition: 0.2s linear;
+
+                &::after {
+                    position: absolute;
+                    content: '';
+                    top: 0;
+                    left: -100%;
+                    z-index: -1;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #42b983;
+                    transition: 0.2s linear;
+                }
+
+                &:hover{
+                    color: #fff;
+                    cursor: pointer;
+                    &::after {
+                        left: 0;
+                    }
+                }
             }
         }
 
@@ -77,10 +110,14 @@ export default {
             box-sizing: border-box;
             border-right: 1px black solid;
             padding: 10px 0 0 16px;
-            border-top: 1px black solid;
             position: relative;
             overflow-y: scroll;
             background-color: #fff;
+
+                span{
+                    display: block;
+                    line-height: 21px;
+                }
 
                 &::-webkit-scrollbar
                 {

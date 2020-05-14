@@ -47,7 +47,7 @@ export default {
   height: 55px;
   line-height: 25px;
   padding-top: 6px;
-  border-bottom: 1px solid black;
+  // border-bottom: 1px solid black;
 
   a {
     font-weight: bold;

@@ -99,6 +99,7 @@ export default {
     margin: 20px;
     background-color: #fff;
     position: relative;
+    box-sizing: content-box;
 
     .result-html{
         padding: 8px 0;
@@ -111,6 +112,18 @@ export default {
         position: absolute;
         top: 14px;
         right: 18px;
+        padding: 2px 4px;
+        border: 2px solid #42b983;
+        border-radius: 5px;
+        color: #42b983;
+        font-weight: bold;
+        transition: 0.2s ease;
+    }
+
+    .show-code-button:hover{
+        background-color: #42b983;
+        color: #fff;
+        cursor: pointer;
     }
 }
 
