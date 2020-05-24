@@ -16,6 +16,7 @@ export default {
         css: [String, Number, Array],
         list: Array,
         sizeObj: Object,
+        // activeBtn: Array,
     },
     data() {
         return {
@@ -26,15 +27,13 @@ export default {
             codes: '', //content.vueに渡す用
             blood: false,
             cssArray: [],
-            codestr: ''
+            codestr: '',
         }
     },
     methods: {
         codeShow(index){
             this.htmlCode = this.list[index].html;
             this.cssCode = this.list[index].style; //styleにアクセスするにはlistからいく
-            // console.log(this.list[index].style.length);
-            // console.log(this.cssCode);
             this.cssLen[index] = this.cssCode.length;   
             //動的にデータ追加するプランを明日模索する
             
@@ -42,21 +41,7 @@ export default {
                 this.cssArray[i] = this.cssCode[i].split(','); 
                 //まずsplitでカンマ区切りで配列にする
                 //ここでcssArrayの中身は二重配列
-                
-                // for(var s=0; s<this.cssArray[i].length; s++){
-                //     this.cssArray[i][s] = this.this.cssArray[i][s].replace("\n","");
-                //     console.log(this.cssArray[i][s]);
-                // }
             }
-
-
-            // this.cssLen[index] = this.cssCode.length; //上書きされるからOK
-            // console.log(this.cssLen[index]);
-
-            // for(var i=0; i<this.cssLen[index]; i++){
-            //     this.codestr = this.css[i].split(',');
-            //     console.log(this.codestr);
-            // }
 
             this.codes = {
                 html: this.htmlCode,
@@ -65,9 +50,10 @@ export default {
                 index: index
             }
 
+            // クリックしたら、そのインデックスのHTMLを出力したい
             this.$emit('catchCode', this.codes);
         }
-        // クリックしたら、そのインデックスのHTMLを出力したい
+        
     },
     created() {
         if(this.html instanceof Array){
@@ -77,15 +63,6 @@ export default {
         }else{
             this.blood = false;
         }
-        // for(var i=0; i<this.css.length; i++){
-        //     this.array[i] = this.css[i].split(',');
-        //     console.log(this.array);
-        //     // this.first = this.array{$i}[0]
-        //     // last = length -1
-        //     // if(!this.first or this.last){
-        //     //    g = a
-        //     // }
-        // }
     },
 }
 // JSON.stringify(obj)
@@ -118,6 +95,11 @@ export default {
         color: #42b983;
         font-weight: bold;
         transition: 0.2s ease;
+    }
+
+    .activebtn{
+        background-color: #42b983;
+        color: #fff;
     }
 
     .show-code-button:hover{

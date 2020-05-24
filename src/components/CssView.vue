@@ -3,6 +3,11 @@
         <div class="css-tab-wrapper">
             <div class="css-tab">CSS</div>
             <button v-if="cssCopy" type="button" class="copy-css-btn" v-on:click="copyCss()">CSSをコピー</button>
+            <transition>
+                <div v-show="copied" class="copied-label">
+                    copied
+                </div>
+            </transition>
         </div>
         <textarea id="copy-css" v-bind:value="cssCopy" readonly></textarea>  
         <div class="css-view">
@@ -28,19 +33,27 @@ export default {
         return {
             codestr: '',
             copyTarget: '',
+            copied: false,
         }
     },
     computed: {
 
     },
     methods:{
+        toFalse(){
+            this.copied = false;
+        },
+        startTimer(){
+            setTimeout( this.toFalse, 1500 ); //無名関数で書いてしまうと返り値(undefined)を渡してしまう
+        },
         copyCss(){
             this.copyTarget = document.getElementById("copy-css");
             // コピー対象のテキストを選択する
             this.copyTarget.select();
             // 選択しているテキストをクリップボードにコピーする
             document.execCommand("Copy");
-
+            this.copied = true;
+            this.startTimer();
         }
     },
     created() {
@@ -91,6 +104,37 @@ export default {
                 color: #fff;
             }
 
+            .copied-label{
+                display: inline;
+                position: absolute;
+                top: -18px;
+                right: 130px;
+                font-weight: bold;
+                z-index: 99;
+            }
+
+            .v-enter-active, .v-leave-active{
+                transition: opacity 0.7s, transform 0.7s;
+            }
+
+            .v-enter{ //表示されるときは0から1 //from
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            .v-enter-to{
+                opacity: 1;
+            }
+
+            .v-leave{  //消えるときは1から0 /from
+                opacity: 1;
+            }
+
+            .v-leave-to{
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
            .copy-css-btn{
                 padding: 2px 12px;
                 border: 2px solid #42b983;
@@ -133,26 +177,24 @@ export default {
             overflow-y: scroll;
             background-color: #fff;
             
-                span{
-                    display: block;
-                    line-height: 21px;
-                }
+            span{
+                display: block;
+                line-height: 21px;
+            }
 
-                &::-webkit-scrollbar
-                {
-                    width:5px;
-                    background:#eee;
-                    margin: 4px;
-                }
+            &::-webkit-scrollbar
+            {
+                width:5px;
+                background:#eee;
+                margin: 4px;
+            }
 
-                &::-webkit-scrollbar-thumb {
-                    border-radius: 4px;
-                    background-color: rgba(0,0,0,.5);
-                    box-shadow: 0 0 1px rgba(255,255,255,.5);
-                }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                background-color: rgba(0,0,0,.5);
+                box-shadow: 0 0 1px rgba(255,255,255,.5);
+            }
         }
-
-
     }
 
     #copy-css{

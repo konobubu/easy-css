@@ -1,9 +1,16 @@
 <template>
     <div class="html-view-wrapper">
+
         <div class="html-tab-wrapper">
             <div class="html-tab">HTML</div>
             <button v-if="htmlCopy" type="button" class="copy-html-btn" v-on:click="copyHtml()">HTMLをコピー</button>
+            <transition>
+                <div v-show="copied" class="copied-label">
+                    copied
+                </div>
+            </transition>
         </div>
+
         <textarea id="copy-html" v-bind:value="htmlCopy" readonly></textarea> 
 
         <div v-if="bool" class="html-view">
@@ -14,8 +21,6 @@
         <div v-else class="html-view">
             {{htmlCode}}
         </div>
-    
-
     </div>
 
 </template>
@@ -27,15 +32,26 @@ export default {
         bool: Boolean,
         htmlCopy: [String, Array] //コピー用のhtml
     },
+    data() {
+        return {
+            copied: false,
+        }
+    },
     methods:{
+        toFalse(){
+            this.copied = false;
+        },
+        startTimer(){
+            setTimeout( this.toFalse, 1500 ); //無名関数で書いてしまうと返り値(undefined)を渡してしまう
+        },
         copyHtml(){
             this.copyTarget = document.getElementById("copy-html");
-            // コピー対象のテキストを選択する
-            this.copyTarget.select();
-            // 選択しているテキストをクリップボードにコピーする
-            document.execCommand("Copy");
+            this.copyTarget.select(); // コピー対象のテキストを選択する
+            document.execCommand("Copy"); // 選択しているテキストをクリップボードにコピーする
+            this.copied = true;
+            this.startTimer();
+        },
 
-        }
     },
 }
 </script>
@@ -72,34 +88,65 @@ export default {
                 color: #fff;
             }
 
-            .copy-html-btn{
-                padding: 2px 12px;
-                border: 2px solid #42b983;
-                border-radius: 10px;
-                color: #42b983;
+            .copied-label{
+                display: inline;
+                position: absolute;
+                top: -18px;
+                right: 130px;
                 font-weight: bold;
-                overflow: hidden;
-                position: relative;
-                z-index: 1;
-                transition: 0.2s linear;
+                z-index: 99;
+            }
 
-                &::after {
-                    position: absolute;
-                    content: '';
-                    top: 0;
-                    left: -100%;
-                    z-index: -1;
-                    width: 100%;
-                    height: 100%;
-                    background-color: #42b983;
+            .v-enter-active, .v-leave-active{
+                transition: opacity 0.7s, transform 0.7s;
+            }
+
+            .v-enter{ //表示されるときは0から1 //from
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            .v-enter-to{
+                opacity: 1;
+            }
+
+            .v-leave{  //消えるときは1から0 /from
+                opacity: 1;
+            }
+
+            .v-leave-to{
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+                .copy-html-btn{
+                    padding: 2px 12px;
+                    border: 2px solid #42b983;
+                    border-radius: 10px;
+                    color: #42b983;
+                    font-weight: bold;
+                    overflow: hidden;
+                    position: relative;
+                    z-index: 1;
                     transition: 0.2s linear;
-                }
 
-                &:hover{
-                    color: #fff;
-                    cursor: pointer;
                     &::after {
-                        left: 0;
+                        position: absolute;
+                        content: '';
+                        top: 0;
+                        left: -100%;
+                        z-index: -1;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #42b983;
+                        transition: 0.2s linear;
+                    }
+
+                    &:hover{
+                        color: #fff;
+                        cursor: pointer;
+                        &::after {
+                            left: 0;
                     }
                 }
             }

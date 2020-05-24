@@ -8,6 +8,7 @@
             <div class="result-wrapper">
                 <Result v-bind:list="codelist"
                     v-bind:sizeObj="sizeObj"
+                    v-bind:activeBtn="activeBtn"
                     v-for="code in codelist"
                     v-bind:key="code.id"
                     v-bind:html="code.html"
@@ -46,7 +47,6 @@ export default {
         name: String,
         sizeObj: Object,
         codelist: Array,
-
     },
     components: {
         Result,
@@ -64,12 +64,30 @@ export default {
             csstxt: [], //カンマ消去用の配列
             cssCopy: '', //コピー用のcss
             htmlCopy: '', //コピー用のhtml
-            
+            activeBtn: [], //ボタンにクラスをつけるよう
         }
     },
     methods: {
         // @catchCode = "showHtml"
         // 左辺で子コンポーネントのメソッドを呼び出して、右辺で親のメソッド呼び出し
+        judgeArray(array){
+          //ここで配列の判定
+            if(array instanceof Array){
+                //trueならcodeNestに入れる
+                this.bool = true;
+            }else{
+                //falseならcodes入れる つまりそのまま
+                this.bool = false;
+            }
+            //そのあとContentでv-ifの判定
+        },
+        // doAcivebtn(index){
+        //     for(var i=0; i < this.codelist.length; i++){
+        //         this.activeBtn[i] = false;
+        //     }
+        //     this.activeBtn[index] = true
+        //     console.log(this.activeBtn)
+        // },
         showHtml(code){
             //code: {html:"" , css:"", cssArray:""}
             this.htmlCode = code.html;
@@ -78,15 +96,9 @@ export default {
             this.index = code.index;
             this.htmlCopy = this.htmlCode.join('\n');
 
-            //ここで配列の判定
-            if(this.htmlCode instanceof Array){
-                //trueならcodeNestに入れる
-                this.bool = true;
-            }else{
-                //falseならcodes入れる つまりそのまま
-                this.bool = false;
-            }
-            //そのあとContentでv-ifの判定
+            this.judgeArray(this.htmlCode);
+
+            // this.doAcivebtn(this.index);
 
             this.csstxt = [];
             for(var i=0; i<this.cssArray.length; i++){
@@ -94,8 +106,13 @@ export default {
                 this.csstxt[i] = this.csstxt[i].replace(/,/g, '')
                 this.cssCopy = this.csstxt.join('\n\n');
             }
-
         }
+    },
+    created(){
+        // for(var i=0; i < this.codelist.length; i++){
+        //     this.activeBtn[i] = false;
+        // }
+        // console.log(this.activeBtn)
     }
 }
 </script>

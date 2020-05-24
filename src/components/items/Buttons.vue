@@ -197,10 +197,13 @@ color: #fff;,
     transition: 0.2s ease;
     width: 60px;
     height: 60px;
+    margin: 0 auto;
     position: absolute;
     top: 37%;
-    right: 37%;
+    left: 0;
+    right: 0;
     line-height: 40px;
+
 }
 
 .button-4:hover{
